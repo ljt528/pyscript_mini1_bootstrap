@@ -10,39 +10,28 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+    <!-- PyScript -->
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css"/>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="styles.css" rel="stylesheet" />
 </head>
 
 <body>
-    <!-- Navigation-->
+    <!-- Navigation-->                                           
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#!">Start Bootstrap</a>
+            <a class="navbar-brand" href="#!">쇼핑몰 예제</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">All Products</a></li>
-                            <li>
-                                <hr class="dropdown-divider" />
-                            </li>
-                            <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                            <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                        </ul>
-                    </li>
                 </ul>
                 <form class="d-flex">
                     <button class="btn btn-outline-dark" type="submit">
                         <i class="bi-cart-fill me-1"></i>
-                        Cart
+                        장바구니
                         <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                     </button>
                 </form>
@@ -52,7 +41,7 @@
 
     <!-- Header-->
     <header class="bg-dark py-5">
-        <div class="container px-4 px-lg-5 my-5">
+        <div class="container px-4 px-lg-5">
             <div class="text-center text-white">
                 <h1 class="display-4 fw-bolder">쇼핑몰 예제</h1>
                 <p class="lead fw-normal text-white-50 mb-0">파이스크립트를 이용한 상품 리스트 가져오기</p>
@@ -62,9 +51,40 @@
 
     <!-- Section-->
     <!-- PyScript로 구현해야 하는 부분-->
+    <!-- Product 선택 -->
     <section class="py-5">
+        <div class="container px-4 px-lg-5">
+            <div class="row">
+                <!-- All Product -->
+                <div class="col col-md-1">
+                    <a class="nav-link" href="#!">All</a>
+                </div>
+                <!-- Category -->
+                <div class="dropdown col-md-1">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Category</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">1</a></li>
+                        <li><a class="dropdown-item" href="#!">2</a></li>
+                        <li><a class="dropdown-item" href="#!">3</a></li>
+                        <li><a class="dropdown-item" href="#!">4</a></li>
+                        <li><a class="dropdown-item" href="#!">5</a></li>
+                    </ul>
+                </div>
+                <div class="col col-md-8 "></div>
+                <!-- Popular 정렬 -->
+                <div class="col col-md-1">
+                    <a class="nav-link" href="#!">Popular</a>
+                </div>
+                <!-- Price 정렬 -->
+                <div class="col col-md-1">
+                    <a class="nav-link" href="#!">Price</a>
+                </div>
+            </div>
+        </div>
+
         <div class="container px-4 px-lg-5 mt-5">
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div id="products" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
@@ -81,7 +101,7 @@
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center">
-                                <button type="button" class="btn btn-outline-dark mt-auto" data-bs-toggle="modal"data-bs-target="#exampleModal">
+                                <button type="button" class="btn btn-outline-dark mt-auto" data-bs-toggle="modal" data-bs-target="#detailModal">
                                     상세 페이지
                                 </button>
                             </div>
@@ -100,24 +120,24 @@
     </footer>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-dark text-white">
-                    <h1 class="modal-title fs-5 " id="exampleModalLabel">상품 상세 페이지</h1>
+                    <h1 class="modal-title fs-5 " id="detailModalLabel">상품 상세 페이지</h1>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-5">
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+                            <img id="modal-image" class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
                                 alt="..." />
                         </div>
 
                         <div class="col-7">
-                            <p><strong>상품명</strong></p>
-                            <p>가격</p>
-                            <p>상품 설명</p>
+                            <p><strong id="modal-productname">상품명</strong></p>
+                            <p id="modal-price">가격</p>
+                            <p id="modal-description">상품 설명</p>
                         </div>
                     </div>
                 </div>
@@ -127,6 +147,383 @@
             </div>
         </div>
     </div>
+    <py-script>
+        import asyncio
+        from pyodide.http import pyfetch
+
+        # request 를 보내는 url
+        url = "#"
+
+        # request로 받아올 데이터 초기화.
+        json_data = []
+
+        # 메인페이지 상품리스트 wrap
+        products_wrap = Element("products")
+        # 상세정보 모달 페이지 상품 정보
+        modal_image = Element("modal-image")
+        modal_productname = Element("modal-productname")
+        modal_price = Element("modal-price")
+        modal_description = Element("modal-description")
+        # 랭크별 정렬 버튼
+        #sort_by_rank_btn = Element("sort-by-rank")
+
+        def render_detail(event):
+            # 상세 페이지 모달을 렌더링하는 함수입니다.
+            # 이벤트 객체로부터 상품 ID를 가져옵니다.
+            product_id = int(event.target.getAttribute("target"))
+
+            # 해당 상품의 정보를 모달에 표시합니다.
+            data = json_data[product_id]
+            modal_image.element.src = data.get('image')
+            modal_image.element.alt = f"{data.get('productname')}_thumbnail"
+            modal_productname.write(data.get("productname"))
+            modal_price.write(f"￦ {data.get('price')}")
+            modal_description.write(f"It's a good quality and cheap {data.get('productname')}. It's from the {data.get('from')}.")
+
+        def render_products(category = "", is_sort=False):
+            # 상품 카드들을 렌더링하는 함수입니다.
+            # 카테고리가 지정되지 않은 경우 모든 상품을 표시하고,
+            # 카테고리가 지정된 경우 해당 카테고리의 상품만 표시합니다.
+            # products 내용 초기화
+            products_wrap.write("")
+
+            data_list = []
+            if not category:
+                # 카테고리가 지정되지 않은 경우 모든 상품을 가져옵니다.
+                data_list = json_data
+            else:
+                # 카테고리가 지정된 경우 해당 카테고리의 상품만 가져옵니다.
+                data_list = filter(lambda x: x.get("category") == category, json_data)
+            
+            if is_sort:
+                data_list = sorted(data_list, key = lambda x: x.get("rank"))
+
+            for data in data_list:
+                # 상품 카드를 생성하여 products_wrap에 추가합니다.
+                # 카드
+                card_wrap = pyscript.create("div", classes="col mb-5")
+                card_item = pyscript.create("div", classes="card h-100")
+                # 썸네일
+                img_item = pyscript.create("img", classes="card-img-top thumbnail")
+                img_item.element.src = data.get('image')
+                img_item.element.alt = f"{data.get('productname')} thumbnail"
+                # 상품명 및 가격
+                detail_wrap = pyscript.create("div", classes="card-box p-4")
+                detail_box = pyscript.create("div", classes="text-center")
+                detail_box.write(f"￦ {data.get('price')}")
+                name_item = pyscript.create("h5", classes="fw-bolder")
+                name_item.write(data.get("productname"))
+                # 상세페이지 버튼
+                button_wrap = pyscript.create("div", classes="card-footer p-4 pt-0 border-top-0 bg-transparent")
+                button_box = pyscript.create("div", classes="text-center")
+                button_item = pyscript.create("button", classes="btn btn-outline-dark mt-auto")
+                button_item.element.setAttribute("target", data.get('id'))
+                button_item.element.setAttribute("data-bs-toggle", "modal")
+                button_item.element.setAttribute("data-bs-target", "#detailModal")
+                button_item.write("상세 페이지")
+                button_item.element.onclick = render_detail
+                # 각 HTML element를 위치에 맞게 추가합니다.
+                detail_box.element.prepend(name_item.element)
+                detail_wrap.element.append(detail_box.element)
+                button_wrap.element.append(button_box.element)
+                button_box.element.append(button_item.element)
+                card_item.element.append(img_item.element, detail_wrap.element, button_wrap.element)
+                card_wrap.element.append(card_item.element)
+                products_wrap.element.append(card_wrap.element)
+
+        def sort_by_rank(event):
+            event.preventDefault()
+            render_products(is_sort=True)
+
+        # sort_by_rank_btn.element.onclick = sort_by_rank
+
+        async def request(url):
+            # json_data를 재활용하기 위해 global로 선언합니다.
+            global json_data
+
+            # pyfetch를 통해 데이터를 받아옵니다.
+            # response = await pyfetch(url)
+            # json_data = await response.json()
+
+            # 목데이터
+            json_data = [
+                {
+                    "id": 0,
+                    "productname": "grape",
+                    "rank": 17,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 3000,
+                    "from": "United States of America",
+                    "category": 5
+                },
+                {
+                    "id": 1,
+                    "productname": "peach",
+                    "rank": 2,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 1500,
+                    "from": "South Korea",
+                    "category": 1
+                },
+                {
+                    "id": 2,
+                    "productname": "apple",
+                    "rank": 16,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 3500,
+                    "from": "South Korea",
+                    "category": 1
+                },
+                {
+                    "id": 3,
+                    "productname": "orange",
+                    "rank": 5,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 1000,
+                    "from": "United States of America",
+                    "category": 2
+                },
+                {
+                    "id": 4,
+                    "productname": "kiwi",
+                    "rank": 9,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 1500,
+                    "from": "United States of America",
+                    "category": 6
+                },
+                {
+                    "id": 5,
+                    "productname": "passion fruit",
+                    "rank": 3,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 1500,
+                    "from": "Brazil",
+                    "category": 5
+                },
+                {
+                    "id": 6,
+                    "productname": "watermelon",
+                    "rank": 11,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 15000,
+                    "from": "South Korea",
+                    "category": 6
+                },
+                {
+                    "id": 7,
+                    "productname": "tangerine",
+                    "rank": 30,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 2000,
+                    "from": "South Korea",
+                    "category": 2
+                },
+                {
+                    "id": 8,
+                    "productname": "pomegranate",
+                    "rank": 29,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 4000,
+                    "from": "Uzbekistan",
+                    "category": 1
+                },
+                {
+                    "id": 9,
+                    "productname": "strawberry",
+                    "rank": 10,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 10500,
+                    "from": "South Korea",
+                    "category": 1
+                },
+                {
+                    "id": 10,
+                    "productname": "banana",
+                    "rank": 7,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 3000,
+                    "from": "United States of America",
+                    "category": 3
+                },
+                {
+                    "id": 11,
+                    "productname": "persimmon",
+                    "rank": 23,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 2000,
+                    "from": "South Korea",
+                    "category": 2
+                },
+                {
+                    "id": 12,
+                    "productname": "melon",
+                    "rank": 26,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 8000,
+                    "from": "China",
+                    "category": 4
+                },
+                {
+                    "id": 13,
+                    "productname": "blueberry",
+                    "rank": 4,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 8000,
+                    "from": "South Korea",
+                    "category": 5
+                },
+                {
+                    "id": 14,
+                    "productname": "pear",
+                    "rank": 1,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 4000,
+                    "from": "South Korea",
+                    "category": 3
+                },
+                {
+                    "id": 15,
+                    "productname": "lime",
+                    "rank": 21,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 3000,
+                    "from": "Malaysia",
+                    "category": 4
+                },
+                {
+                    "id": 16,
+                    "productname": "tomato",
+                    "rank": 14,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 2500,
+                    "from": "South Korea",
+                    "category": 1
+                },
+                {
+                    "id": 17,
+                    "productname": "plum",
+                    "rank": 27,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 3500,
+                    "from": "South Korea",
+                    "category": 1
+                },
+                {
+                    "id": 18,
+                    "productname": "mango",
+                    "rank": 28,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 4000,
+                    "from": "Philippines",
+                    "category": 3
+                },
+                {
+                    "id": 19,
+                    "productname": "guava",
+                    "rank": 13,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 3500,
+                    "from": "Brazil",
+                    "category": 4
+                },
+                {
+                    "id": 20,
+                    "productname": "mangosteen",
+                    "rank": 15,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 3000,
+                    "from": "Thailand",
+                    "category": 5
+                },
+                {
+                    "id": 21,
+                    "productname": "pineapple",
+                    "rank": 22,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 9000,
+                    "from": "Hawaii",
+                    "category": 3
+                },
+                {
+                    "id": 22,
+                    "productname": "dragon fruit",
+                    "rank": 20,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 5000,
+                    "from": "Thailand",
+                    "category": 1
+                },
+                {
+                    "id": 23,
+                    "productname": "lemon",
+                    "rank": 6,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 2500,
+                    "from": "India",
+                    "category": 3
+                },
+                {
+                    "id": 24,
+                    "productname": "cherry",
+                    "rank": 18,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 9500,
+                    "from": "United States of America",
+                    "category": 1
+                },
+                {
+                    "id": 25,
+                    "productname": "apple mango",
+                    "rank": 24,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 7000,
+                    "from": "Thailand",
+                    "category": 6
+                },
+                {
+                    "id": 26,
+                    "productname": "coconut",
+                    "rank": 12,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 5500,
+                    "from": "Philippines",
+                    "category": 4
+                },
+                {
+                    "id": 27,
+                    "productname": "avocado",
+                    "rank": 25,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 4500,
+                    "from": "Mexico",
+                    "category": 4
+                },
+                {
+                    "id": 28,
+                    "productname": "lychee",
+                    "rank": 19,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 2000,
+                    "from": "India",
+                    "category": 1
+                },
+                {
+                    "id": 29,
+                    "productname": "papaya",
+                    "rank": 8,
+                    "image": "https://via.placeholder.com/450x300",
+                    "price": 2500,
+                    "from": "Thailand",
+                    "category": 3
+                }
+            ]
+            # 사이트 로딩시에 받아온 데이터를 기반으로 렌더링합니다.
+            render_products()
+
+        # pyscript 실행시 데이터를 받아옵니다.
+        asyncio.ensure_future(request(url))
+    </py-script>
 
 </body>
 
