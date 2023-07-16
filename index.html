@@ -56,29 +56,34 @@
         <div class="container px-4 px-lg-5">
             <div class="row">
                 <!-- All Product -->
-                <div class="col col-md-1">
-                    <a class="nav-link" href="#!">All</a>
-                </div>
+                <!-- <div class="col col-md-1">
+                    <a id="category-all" class="nav-link" href="/category/all">All</a>
+                </div> -->
                 <!-- Category -->
                 <div class="dropdown col-md-1">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                    <a id="selected-category" class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Category</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">1</a></li>
-                        <li><a class="dropdown-item" href="#!">2</a></li>
-                        <li><a class="dropdown-item" href="#!">3</a></li>
-                        <li><a class="dropdown-item" href="#!">4</a></li>
-                        <li><a class="dropdown-item" href="#!">5</a></li>
+                    <ul id="category-select" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/category/0">All</a></li>
+                        <li><a class="dropdown-item" href="/category/1">1</a></li>
+                        <li><a class="dropdown-item" href="/category/2">2</a></li>
+                        <li><a class="dropdown-item" href="/category/3">3</a></li>
+                        <li><a class="dropdown-item" href="/category/4">4</a></li>
+                        <li><a class="dropdown-item" href="/category/5">5</a></li>
                     </ul>
                 </div>
                 <div class="col col-md-8 "></div>
+                <!-- Default 정렬 -->
+                <div class="col col-md-1">
+                  <a id="sort-default" class="nav-link text-decoration-underline" href="/sort/id">Default</a>
+                </div>
                 <!-- Popular 정렬 -->
                 <div class="col col-md-1">
-                    <a class="nav-link" href="#!">Popular</a>
+                    <a id="sort-rank" class="nav-link" href="/sort/rank">Popular</a>
                 </div>
                 <!-- Price 정렬 -->
                 <div class="col col-md-1">
-                    <a class="nav-link" href="#!">Price</a>
+                    <a id="sort-price" class="nav-link" href="/sort/price">Price</a>
                 </div>
             </div>
         </div>
@@ -95,7 +100,7 @@
                                 <!-- Product name-->
                                 <h5 class="fw-bolder">상품명</h5>
                                 <!-- Product price-->
-                                $ 가격
+                                ￦ 가격
                             </div>
                         </div>
                         <!-- Product actions-->
@@ -149,23 +154,36 @@
     </div>
     <py-script>
         import asyncio
+        import js
         from pyodide.http import pyfetch
 
-        # request 를 보내는 url
+        # request 를 보내는 url을 할당합니다.
         url = "#"
 
-        # request로 받아올 데이터 초기화.
+        # request로 받아올 데이터를 초기화합니다.
         json_data = []
+        # category와 sort 값의 기본값을 할당합니다.
+        category = 0
+        sort = "id"
 
-        # 메인페이지 상품리스트 wrap
+        # 상품리스트가 표시될 HTML 태그를 불러옵니다.
         products_wrap = Element("products")
-        # 상세정보 모달 페이지 상품 정보
+        # 상세정보 모달 페이지 중, 수정해야하는 HTML태그를 선택합니다.
         modal_image = Element("modal-image")
         modal_productname = Element("modal-productname")
         modal_price = Element("modal-price")
         modal_description = Element("modal-description")
-        # 랭크별 정렬 버튼
-        #sort_by_rank_btn = Element("sort-by-rank")
+        # 카테고리 선택 버튼(a 태그)과 선택된 카테고리명을 넣어줄 HTML태그를 선택합니다.
+        # 현재 pyscript에는 자식선택자가 없고, 하위 Element를 검색하는 select도 id 기반 검색만 지원하기 때문에 js 문법을 사용합니다.
+        category_btn = Element('category-select').element.querySelectorAll("li")
+        category_all_btn = Element('category-all')
+        selected_category = Element('selected-category')
+        # 정렬 버튼(a 태그)을 선택합니다.
+        sort_default_btn = Element("sort-default")
+        sort_rank_btn = Element("sort-rank")
+        sort_price_btn = Element("sort-price")
+        # 정렬에는 같은 이벤트를 할당할것이기 때문에 Array에 담아줍니다.
+        sort_btns = [sort_default_btn, sort_rank_btn, sort_price_btn]
 
         def render_detail(event):
             # 상세 페이지 모달을 렌더링하는 함수입니다.
@@ -180,7 +198,7 @@
             modal_price.write(f"￦ {data.get('price')}")
             modal_description.write(f"It's a good quality and cheap {data.get('productname')}. It's from the {data.get('from')}.")
 
-        def render_products(category = "", is_sort=False):
+        def render_products():
             # 상품 카드들을 렌더링하는 함수입니다.
             # 카테고리가 지정되지 않은 경우 모든 상품을 표시하고,
             # 카테고리가 지정된 경우 해당 카테고리의 상품만 표시합니다.
@@ -188,15 +206,15 @@
             products_wrap.write("")
 
             data_list = []
-            if not category:
+            if category == 0:
                 # 카테고리가 지정되지 않은 경우 모든 상품을 가져옵니다.
                 data_list = json_data
             else:
                 # 카테고리가 지정된 경우 해당 카테고리의 상품만 가져옵니다.
                 data_list = filter(lambda x: x.get("category") == category, json_data)
             
-            if is_sort:
-                data_list = sorted(data_list, key = lambda x: x.get("rank"))
+
+            data_list = sorted(data_list, key = lambda x: x.get(sort))
 
             for data in data_list:
                 # 상품 카드를 생성하여 products_wrap에 추가합니다.
@@ -231,12 +249,50 @@
                 card_wrap.element.append(card_item.element)
                 products_wrap.element.append(card_wrap.element)
 
-        def sort_by_rank(event):
+        # sort 값을 지정하고 products를 다시 렌더링합니다.
+        def sort_products(event):
             event.preventDefault()
-            render_products(is_sort=True)
+            # 현재 선택된 카테고리에 밑줄을 추가합니다.
+            for btn in sort_btns:
+                btn.remove_class('text-decoration-underline')
+            event.target.classList.add('text-decoration-underline')
+            global sort
+            sort = event.target.getAttribute("href").split('/')[2]
+            render_products()
 
-        # sort_by_rank_btn.element.onclick = sort_by_rank
+        # category를 all로 설정하고 products를 다시 렌더링합니다.
+        # def category_all(event):
+        #     event.preventDefault()
+        #     selected_category.write("Category")
+        #     category_all_btn.add_class('text-decoration-underline')
+        #     global category
+        #     category = "all"
+        #     render_products()
 
+        # category 값을 지정하고 products를 다시 렌더링합니다.
+        def category_filter(event):
+            event.preventDefault()
+            global category
+            category = int(event.target.getAttribute("href").split('/')[2])
+            # category_all_btn.remove_class('text-decoration-underline')
+            if category != 0:
+                selected_category.write(category)
+            else:
+                selected_category.write("Category")
+            render_products()
+
+        # sort 버튼에 onclick 이벤트를 할당합니다.
+        for btn in sort_btns:
+            btn.element.onclick = sort_products
+
+        # category-all 버튼에 onclick 이벤트를 할당합니다.
+        # category_all_btn.element.onclick = category_all
+
+        # category-select 버튼에 onclick 이벤트를 할당합니다.
+        for btn in category_btn:
+            btn.onclick = category_filter
+
+        # 지정된 url로 요청을 보내서 json_data에 담고 렌더링합니다.
         async def request(url):
             # json_data를 재활용하기 위해 global로 선언합니다.
             global json_data
