@@ -62,13 +62,14 @@
                 <!-- Category -->
                 <div class="dropdown col-md-1">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Category</a>
+                        data-bs-toggle="dropdown" aria-expanded="false">Color</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">1</a></li>
-                        <li><a class="dropdown-item" href="#!">2</a></li>
-                        <li><a class="dropdown-item" href="#!">3</a></li>
-                        <li><a class="dropdown-item" href="#!">4</a></li>
-                        <li><a class="dropdown-item" href="#!">5</a></li>
+                        <li><a class="dropdown-item" href="#!">빨간색</a></li>
+                        <li><a class="dropdown-item" href="#!">주황색</a></li>
+                        <li><a class="dropdown-item" href="#!">노란색</a></li>
+                        <li><a class="dropdown-item" href="#!">초록색</a></li>
+                        <li><a class="dropdown-item" href="#!">보라색</a></li>
+                        <li><a class="dropdown-item" href="#!">기타</a></li>
                     </ul>
                 </div>
                 <div class="col col-md-8 "></div>
@@ -178,7 +179,7 @@
             modal_image.element.alt = f"{data.get('productname')}_thumbnail"
             modal_productname.write(data.get("productname"))
             modal_price.write(f"￦ {data.get('price')}")
-            modal_description.write(f"It's a good quality and cheap {data.get('productname')}. It's from the {data.get('from')}.")
+            modal_description.write(f"It's a good quality and cheap. It's from {data.get('from')}.")
 
         def render_products(category = "", is_sort=False):
             # 상품 카드들을 렌더링하는 함수입니다.
@@ -249,273 +250,273 @@
             json_data = [
                 {
                     "id": 0,
-                    "productname": "grape",
+                    "productname": "포도",
                     "rank": 17,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 3000,
-                    "from": "United States of America",
-                    "category": 5
+                    "from": "the United States of America",
+                    "category": "보라색"
                 },
                 {
                     "id": 1,
-                    "productname": "peach",
+                    "productname": "복숭아",
                     "rank": 2,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 1500,
                     "from": "South Korea",
-                    "category": 1
+                    "category": "빨간색"
                 },
                 {
                     "id": 2,
-                    "productname": "apple",
+                    "productname": "사과",
                     "rank": 16,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 3500,
                     "from": "South Korea",
-                    "category": 1
+                    "category": "빨간색"
                 },
                 {
                     "id": 3,
-                    "productname": "orange",
+                    "productname": "오렌지",
                     "rank": 5,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 1000,
-                    "from": "United States of America",
-                    "category": 2
+                    "from": "the United States of America",
+                    "category": "주황색"
                 },
                 {
                     "id": 4,
-                    "productname": "kiwi",
+                    "productname": "키위",
                     "rank": 9,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 1500,
-                    "from": "United States of America",
-                    "category": 6
+                    "from": "the United States of America",
+                    "category": "기타"
                 },
                 {
                     "id": 5,
-                    "productname": "passion fruit",
+                    "productname": "패션후르츠",
                     "rank": 3,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 1500,
                     "from": "Brazil",
-                    "category": 5
+                    "category": "보라색"
                 },
                 {
                     "id": 6,
-                    "productname": "watermelon",
+                    "productname": "수박",
                     "rank": 11,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 15000,
                     "from": "South Korea",
-                    "category": 6
+                    "category": "기타"
                 },
                 {
                     "id": 7,
-                    "productname": "tangerine",
+                    "productname": "귤",
                     "rank": 30,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 2000,
                     "from": "South Korea",
-                    "category": 2
+                    "category": "주황색"
                 },
                 {
                     "id": 8,
-                    "productname": "pomegranate",
+                    "productname": "석류",
                     "rank": 29,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 4000,
                     "from": "Uzbekistan",
-                    "category": 1
+                    "category": "빨간색"
                 },
                 {
                     "id": 9,
-                    "productname": "strawberry",
+                    "productname": "딸기",
                     "rank": 10,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 10500,
                     "from": "South Korea",
-                    "category": 1
+                    "category": "빨간색"
                 },
                 {
                     "id": 10,
-                    "productname": "banana",
+                    "productname": "바나나",
                     "rank": 7,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 3000,
-                    "from": "United States of America",
-                    "category": 3
+                    "from": "the United States of America",
+                    "category": "노란색"
                 },
                 {
                     "id": 11,
-                    "productname": "persimmon",
+                    "productname": "감",
                     "rank": 23,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 2000,
                     "from": "South Korea",
-                    "category": 2
+                    "category": "주황색"
                 },
                 {
                     "id": 12,
-                    "productname": "melon",
+                    "productname": "멜론",
                     "rank": 26,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 8000,
                     "from": "China",
-                    "category": 4
+                    "category": "초록색"
                 },
                 {
                     "id": 13,
-                    "productname": "blueberry",
+                    "productname": "블루베리",
                     "rank": 4,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 8000,
                     "from": "South Korea",
-                    "category": 5
+                    "category": "보라색"
                 },
                 {
                     "id": 14,
-                    "productname": "pear",
+                    "productname": "배",
                     "rank": 1,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 4000,
                     "from": "South Korea",
-                    "category": 3
+                    "category": "노란색"
                 },
                 {
                     "id": 15,
-                    "productname": "lime",
+                    "productname": "라임",
                     "rank": 21,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 3000,
                     "from": "Malaysia",
-                    "category": 4
+                    "category": "초록색"
                 },
                 {
                     "id": 16,
-                    "productname": "tomato",
+                    "productname": "토마토",
                     "rank": 14,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 2500,
                     "from": "South Korea",
-                    "category": 1
+                    "category": "빨간색"
                 },
                 {
                     "id": 17,
-                    "productname": "plum",
+                    "productname": "자두",
                     "rank": 27,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 3500,
                     "from": "South Korea",
-                    "category": 1
+                    "category": "빨간색"
                 },
                 {
                     "id": 18,
-                    "productname": "mango",
+                    "productname": "망고",
                     "rank": 28,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 4000,
-                    "from": "Philippines",
-                    "category": 3
+                    "from": "the Philippines",
+                    "category": "노란색"
                 },
                 {
                     "id": 19,
-                    "productname": "guava",
+                    "productname": "구아바",
                     "rank": 13,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 3500,
                     "from": "Brazil",
-                    "category": 4
+                    "category": "초록색"
                 },
                 {
                     "id": 20,
-                    "productname": "mangosteen",
+                    "productname": "망고스틴",
                     "rank": 15,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 3000,
                     "from": "Thailand",
-                    "category": 5
+                    "category": "보라색"
                 },
                 {
                     "id": 21,
-                    "productname": "pineapple",
+                    "productname": "파인애플",
                     "rank": 22,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 9000,
                     "from": "Hawaii",
-                    "category": 3
+                    "category": "노란색"
                 },
                 {
                     "id": 22,
-                    "productname": "dragon fruit",
+                    "productname": "용과",
                     "rank": 20,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 5000,
                     "from": "Thailand",
-                    "category": 1
+                    "category": "빨간색"
                 },
                 {
                     "id": 23,
-                    "productname": "lemon",
+                    "productname": "레몬",
                     "rank": 6,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 2500,
                     "from": "India",
-                    "category": 3
+                    "category": "노란색"
                 },
                 {
                     "id": 24,
-                    "productname": "cherry",
+                    "productname": "체리",
                     "rank": 18,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 9500,
-                    "from": "United States of America",
-                    "category": 1
+                    "from": "the United States of America",
+                    "category": "빨간색"
                 },
                 {
                     "id": 25,
-                    "productname": "apple mango",
+                    "productname": "애플망고",
                     "rank": 24,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 7000,
                     "from": "Thailand",
-                    "category": 6
+                    "category": "기타"
                 },
                 {
                     "id": 26,
-                    "productname": "coconut",
+                    "productname": "코코넛",
                     "rank": 12,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 5500,
-                    "from": "Philippines",
-                    "category": 4
+                    "from": "the Philippines",
+                    "category": "초록색"
                 },
                 {
                     "id": 27,
-                    "productname": "avocado",
+                    "productname": "아보카도",
                     "rank": 25,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 4500,
                     "from": "Mexico",
-                    "category": 4
+                    "category": "초록색"
                 },
                 {
                     "id": 28,
-                    "productname": "lychee",
+                    "productname": "리치",
                     "rank": 19,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 2000,
                     "from": "India",
-                    "category": 1
+                    "category": "빨간색"
                 },
                 {
                     "id": 29,
-                    "productname": "papaya",
+                    "productname": "파파야",
                     "rank": 8,
                     "image": "https://via.placeholder.com/450x300",
                     "price": 2500,
                     "from": "Thailand",
-                    "category": 3
+                    "category": "노란색"
                 }
             ]
             # 사이트 로딩시에 받아온 데이터를 기반으로 렌더링합니다.
