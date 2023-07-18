@@ -1,0 +1,272 @@
+[
+  {
+    "id": 0,
+    "productname": "grape",
+    "rank": 17,
+    "image": "��",
+    "price": 3000,
+    "from": "United States of America",
+    "category": 5
+  },
+  {
+    "id": 1,
+    "productname": "peach",
+    "rank": 2,
+    "image": "��",
+    "price": 1500,
+    "from": "South Korea",
+    "category": 1
+  },
+  {
+    "id": 2,
+    "productname": "apple",
+    "rank": 16,
+    "image": "��",
+    "price": 3500,
+    "from": "South Korea",
+    "category": 1
+  },
+  {
+    "id": 3,
+    "productname": "orange",
+    "rank": 5,
+    "image": "��",
+    "price": 1000,
+    "from": "United States of America",
+    "category": 2
+  },
+  {
+    "id": 4,
+    "productname": "kiwi",
+    "rank": 9,
+    "image": "��",
+    "price": 1500,
+    "from": "United States of America",
+    "category": 6
+  },
+  {
+    "id": 5,
+    "productname": "passion fruit",
+    "rank": 3,
+    "image": "��",
+    "price": 1500,
+    "from": "Brazil",
+    "category": 5
+  },
+  {
+    "id": 6,
+    "productname": "watermelon",
+    "rank": 11,
+    "image": "��",
+    "price": 15000,
+    "from": "South Korea",
+    "category": 6
+  },
+  {
+    "id": 7,
+    "productname": "tangerine",
+    "rank": 30,
+    "image": "��",
+    "price": 2000,
+    "from": "South Korea",
+    "category": 2
+  },
+  {
+    "id": 8,
+    "productname": "pomegranate",
+    "rank": 29,
+    "image": "��",
+    "price": 4000,
+    "from": "Uzbekistan",
+    "category": 1
+  },
+  {
+    "id": 9,
+    "productname": "strawberry",
+    "rank": 10,
+    "image": "��",
+    "price": 10500,
+    "from": "South Korea",
+    "category": 1
+  },
+  {
+    "id": 10,
+    "productname": "banana",
+    "rank": 7,
+    "image": "��",
+    "price": 3000,
+    "from": "United States of America",
+    "category": 3
+  },
+  {
+    "id": 11,
+    "productname": "persimmon",
+    "rank": 23,
+    "image": "��",
+    "price": 2000,
+    "from": "South Korea",
+    "category": 2
+  },
+  {
+    "id": 12,
+    "productname": "melon",
+    "rank": 26,
+    "image": "��",
+    "price": 8000,
+    "from": "China",
+    "category": 4
+  },
+  {
+    "id": 13,
+    "productname": "blueberry",
+    "rank": 4,
+    "image": "��",
+    "price": 8000,
+    "from": "South Korea",
+    "category": 5
+  },
+  {
+    "id": 14,
+    "productname": "pear",
+    "rank": 1,
+    "image": "��",
+    "price": 4000,
+    "from": "South Korea",
+    "category": 3
+  },
+  {
+    "id": 15,
+    "productname": "lime",
+    "rank": 21,
+    "image": "��",
+    "price": 3000,
+    "from": "Malaysia",
+    "category": 4
+  },
+  {
+    "id": 16,
+    "productname": "tomato",
+    "rank": 14,
+    "image": "��",
+    "price": 2500,
+    "from": "South Korea",
+    "category": 1
+  },
+  {
+    "id": 17,
+    "productname": "plum",
+    "rank": 27,
+    "image": "��",
+    "price": 3500,
+    "from": "South Korea",
+    "category": 1
+  },
+  {
+    "id": 18,
+    "productname": "mango",
+    "rank": 28,
+    "image": "��",
+    "price": 4000,
+    "from": "Philippines",
+    "category": 3
+  },
+  {
+    "id": 19,
+    "productname": "guava",
+    "rank": 13,
+    "image": "��",
+    "price": 3500,
+    "from": "Brazil",
+    "category": 4
+  },
+  {
+    "id": 20,
+    "productname": "mangosteen",
+    "rank": 15,
+    "image": "��",
+    "price": 3000,
+    "from": "Thailand",
+    "category": 5
+  },
+  {
+    "id": 21,
+    "productname": "pineapple",
+    "rank": 22,
+    "image": "��",
+    "price": 9000,
+    "from": "Hawaii",
+    "category": 3
+  },
+  {
+    "id": 22,
+    "productname": "dragon fruit",
+    "rank": 20,
+    "image": "��",
+    "price": 5000,
+    "from": "Thailand",
+    "category": 1
+  },
+  {
+    "id": 23,
+    "productname": "lemon",
+    "rank": 6,
+    "image": "��",
+    "price": 2500,
+    "from": "India",
+    "category": 3
+  },
+  {
+    "id": 24,
+    "productname": "cherry",
+    "rank": 18,
+    "image": "��",
+    "price": 9500,
+    "from": "United States of America",
+    "category": 1
+  },
+  {
+    "id": 25,
+    "productname": "apple mango",
+    "rank": 24,
+    "image": "��",
+    "price": 7000,
+    "from": "Thailand",
+    "category": 6
+  },
+  {
+    "id": 26,
+    "productname": "coconut",
+    "rank": 12,
+    "image": "��",
+    "price": 5500,
+    "from": "Philippines",
+    "category": 4
+  },
+  {
+    "id": 27,
+    "productname": "avocado",
+    "rank": 25,
+    "image": "��",
+    "price": 4500,
+    "from": "Mexico",
+    "category": 4
+  },
+  {
+    "id": 28,
+    "productname": "lychee",
+    "rank": 19,
+    "image": "��",
+    "price": 2000,
+    "from": "India",
+    "category": 1
+  },
+  {
+    "id": 29,
+    "productname": "papaya",
+    "rank": 8,
+    "image": "��",
+    "price": 2500,
+    "from": "Thailand",
+    "category": 3
+  }
+]
